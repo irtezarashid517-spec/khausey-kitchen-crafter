@@ -78,15 +78,26 @@ const OrderForm = ({ preselectedItem }: OrderFormProps) => {
     const existingOrders = JSON.parse(localStorage.getItem('orders') || '[]');
     localStorage.setItem('orders', JSON.stringify([...existingOrders, order]));
 
-    // Send email notification
+    // Send email notification via edge function
     try {
-      const response = await fetch('/api/send-order-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(order),
+      const { supabase } = await import('@/integrations/supabase/client');
+      const { error: emailError } = await supabase.functions.invoke('send-order-email', {
+        body: {
+          customerName,
+          customerPhone,
+          customerAddress,
+          itemName: selectedItem.name,
+          quantity,
+          selectedSides: selectedSides.map(s => s.name),
+          selectedDessert: selectedDessert?.name || '',
+          specialInstructions,
+          total: calculateTotal()
+        }
       });
 
-      if (!response.ok) throw new Error('Failed to send email');
+      if (emailError) {
+        console.error('Failed to send email notification:', emailError);
+      }
     } catch (error) {
       console.error('Email error:', error);
     }

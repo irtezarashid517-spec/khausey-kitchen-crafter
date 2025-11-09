@@ -8,75 +8,75 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 217 33% 97%;
-    --foreground: 222 47% 11%;
+    --background: 0 0% 98%;
+    --foreground: 220 40% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
-    --card-hover: 210 100% 95%;
+    --card-foreground: 220 40% 15%;
+    --card-hover: 220 60% 97%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 220 40% 15%;
 
-    --primary: 221 83% 25%;
-    --primary-foreground: 210 100% 98%;
+    --primary: 220 50% 30%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 210 100% 70%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 220 60% 88%;
+    --secondary-foreground: 220 40% 15%;
 
-    --muted: 217 20% 88%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 220 20% 92%;
+    --muted-foreground: 220 20% 45%;
 
-    --accent: 210 100% 70%;
-    --accent-foreground: 222 47% 11%;
+    --accent: 220 70% 55%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 100% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 217 20% 85%;
-    --input: 217 20% 85%;
-    --ring: 221 83% 25%;
+    --border: 220 20% 88%;
+    --input: 220 20% 88%;
+    --ring: 220 70% 55%;
 
     --radius: 0.75rem;
 
     /* Custom design tokens */
-    --hero-gradient-start: 221 83% 25% / 0.85;
-    --hero-gradient-end: 210 100% 70% / 0.65;
+    --hero-gradient-start: 220 50% 30% / 0.88;
+    --hero-gradient-end: 220 70% 55% / 0.70;
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
-    --background: 222 47% 11%;
-    --foreground: 210 100% 98%;
+    --background: 220 40% 10%;
+    --foreground: 0 0% 98%;
 
-    --card: 221 50% 15%;
-    --card-foreground: 210 100% 98%;
-    --card-hover: 221 50% 25%;
+    --card: 220 40% 14%;
+    --card-foreground: 0 0% 98%;
+    --card-hover: 220 40% 20%;
 
-    --popover: 221 50% 15%;
-    --popover-foreground: 210 100% 98%;
+    --popover: 220 40% 14%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 210 100% 70%;
-    --primary-foreground: 222 47% 11%;
+    --primary: 220 70% 55%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 221 50% 20%;
-    --secondary-foreground: 210 100% 98%;
+    --secondary: 220 40% 20%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 221 50% 20%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 220 40% 20%;
+    --muted-foreground: 220 20% 65%;
 
-    --accent: 210 100% 70%;
-    --accent-foreground: 222 47% 11%;
+    --accent: 220 70% 55%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 63% 31%;
-    --destructive-foreground: 210 100% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 221 50% 20%;
-    --input: 221 50% 20%;
-    --ring: 210 100% 70%;
+    --border: 220 40% 20%;
+    --input: 220 40% 20%;
+    --ring: 220 70% 55%;
 
-    --hero-gradient-start: 221 83% 15% / 0.90;
-    --hero-gradient-end: 210 100% 50% / 0.70;
+    --hero-gradient-start: 220 50% 15% / 0.92;
+    --hero-gradient-end: 220 70% 45% / 0.75;
   }
 }
 
@@ -91,17 +91,17 @@ All colors MUST be HSL.
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Dancing Script', cursive;
   }
 }
 
 @layer components {
   .heading-elegant {
-    @apply font-['Playfair_Display'] font-bold;
+    @apply font-cursive font-bold;
   }
 
   .text-caps {
-    @apply font-['Poppins'] uppercase tracking-wider;
+    @apply font-poppins uppercase tracking-wider;
   }
 
   .hero-overlay {

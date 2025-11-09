@@ -15,7 +15,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-lg border-b border-border/50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -25,8 +25,8 @@ const Navbar = () => {
               alt="Khauwsey House" 
               className="w-12 h-12 object-contain transition-transform duration-300 group-hover:scale-110"
             />
-            <span className="heading-elegant text-2xl md:text-3xl text-primary">
-              KHAUWSEY HOUSE
+            <span className="font-cursive text-2xl md:text-3xl text-primary font-bold">
+              Khauwsey House
             </span>
           </Link>
 
