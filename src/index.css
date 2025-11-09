@@ -13,6 +13,7 @@ All colors MUST be HSL.
 
     --card: 0 0% 100%;
     --card-foreground: 222 47% 11%;
+    --card-hover: 210 100% 95%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
@@ -41,7 +42,6 @@ All colors MUST be HSL.
     /* Custom design tokens */
     --hero-gradient-start: 221 83% 25% / 0.85;
     --hero-gradient-end: 210 100% 70% / 0.65;
-    --card-hover: 210 100% 95%;
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
@@ -51,6 +51,7 @@ All colors MUST be HSL.
 
     --card: 221 50% 15%;
     --card-foreground: 210 100% 98%;
+    --card-hover: 221 50% 25%;
 
     --popover: 221 50% 15%;
     --popover-foreground: 210 100% 98%;
@@ -76,7 +77,6 @@ All colors MUST be HSL.
 
     --hero-gradient-start: 221 83% 15% / 0.90;
     --hero-gradient-end: 210 100% 50% / 0.70;
-    --card-hover: 221 50% 25%;
   }
 }
 
