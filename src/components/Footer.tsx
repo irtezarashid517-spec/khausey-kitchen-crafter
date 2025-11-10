@@ -49,7 +49,10 @@ const Footer = () => {
               <a href="#about" className="block hover:underline">About Us</a>
               <a href="#order" className="block hover:underline">Order Now</a>
               <a href="/orders" className="block hover:underline">My Orders</a>
-              <p className="mt-4 opacity-90">🍴 Also available on FoodPanda!</p>
+              <p className="mt-4 opacity-90 flex items-center gap-2">
+                <img src="/foodpanda-icon.png" alt="FoodPanda" className="w-5 h-5 inline-block" />
+                Also available on FoodPanda!
+              </p>
             </div>
           </div>
         </div>

@@ -1,42 +1,51 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import bowlIcon from "@/assets/hero-khauwsey.jpg";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "Menu", href: "#menu" },
-    { name: "About", href: "#about" },
-    { name: "Order", href: "#order" },
-    { name: "My Orders", href: "/orders" },
+    { name: "HOME", href: "/" },
+    { name: "MENU", href: "#menu" },
+    { name: "ABOUT", href: "#about" },
+    { name: "MY ORDERS", href: "/orders" },
+    { name: "ORDER NOW", href: "#order" },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-lg border-b border-border/50">
+    <nav className={`fixed top-0 left-0 right-0 z-50 smooth-transition ${
+      isScrolled 
+        ? 'bg-background/70 backdrop-blur-lg border-b border-border/50' 
+        : 'bg-primary/85 backdrop-blur-sm border-b border-primary-foreground/10'
+    }`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <img 
-              src="/favicon.png" 
-              alt="Khauwsey House" 
-              className="w-12 h-12 object-contain transition-transform duration-300 group-hover:scale-110"
-            />
-            <span className="font-cursive text-2xl md:text-3xl text-primary font-bold">
-              Khauwsey House
-            </span>
-          </Link>
+          <a href="/" className={`text-2xl md:text-3xl font-cursive font-bold hover:scale-105 smooth-transition flex items-center gap-2 ${
+            isScrolled ? 'text-primary' : 'text-primary-foreground'
+          }`}>
+            <img src="/bowl-icon.png" alt="Bowl" className="w-8 h-8" />
+            Khauwsey House
+          </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-caps text-sm text-foreground underline-effect py-2"
+                className={`text-caps text-sm underline-effect ${
+                  isScrolled ? 'text-foreground' : 'text-primary-foreground'
+                }`}
               >
                 {link.name}
               </a>
@@ -46,7 +55,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-foreground"
+            className={`md:hidden p-2 ${isScrolled ? 'text-foreground' : 'text-primary-foreground'}`}
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -55,13 +64,15 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 animate-fade-in">
+          <div className="md:hidden py-4 space-y-2">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="block text-caps text-sm text-foreground py-3 border-b border-border last:border-0"
+                className={`block text-caps text-sm py-2 ${
+                  isScrolled ? 'text-foreground' : 'text-primary-foreground'
+                }`}
               >
                 {link.name}
               </a>

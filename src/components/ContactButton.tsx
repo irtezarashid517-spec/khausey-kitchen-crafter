@@ -25,20 +25,38 @@ const ContactButton = () => {
       return;
     }
 
-    // Here you would send the contact message
-    // For now, we'll just show a success message
-    Swal.fire({
-      icon: "success",
-      title: "Message Sent!",
-      text: "We'll get back to you soon.",
-      confirmButtonColor: "hsl(var(--primary))",
-    });
+    try {
+      const { supabase } = await import('@/integrations/supabase/client');
+      const { error: emailError } = await supabase.functions.invoke('send-contact-email', {
+        body: { name, email, message }
+      });
 
-    // Reset form
-    setName("");
-    setEmail("");
-    setMessage("");
-    setIsOpen(false);
+      if (emailError) {
+        console.error('Failed to send contact email:', emailError);
+        throw emailError;
+      }
+
+      Swal.fire({
+        icon: "success",
+        title: "Message Sent!",
+        text: "We'll get back to you soon.",
+        confirmButtonColor: "hsl(var(--primary))",
+      });
+
+      // Reset form
+      setName("");
+      setEmail("");
+      setMessage("");
+      setIsOpen(false);
+    } catch (error) {
+      console.error('Contact form error:', error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Failed to send message. Please try again.",
+        confirmButtonColor: "hsl(var(--primary))",
+      });
+    }
   };
 
   return (

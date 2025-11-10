@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { MenuItem, SideDish, Order } from "@/types/menu";
-import { sideDishes, desserts } from "@/data/menuData";
+import { sideDishes, desserts, mainDishes } from "@/data/menuData";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Swal from "sweetalert2";
 import { ShoppingCart, Plus, Minus } from "lucide-react";
 
@@ -154,16 +155,28 @@ const OrderForm = ({ preselectedItem }: OrderFormProps) => {
         </h2>
 
         <form onSubmit={handleSubmit} className="bg-card p-6 md:p-8 rounded-xl shadow-lg" data-aos="fade-up">
-          {/* Selected Item Display */}
-          {selectedItem && (
-            <div className="mb-6 p-4 bg-primary/10 rounded-lg">
-              <h3 className="text-caps font-semibold mb-2">Selected Item:</h3>
-              <div className="flex items-center justify-between">
-                <span className="text-lg">{selectedItem.name}</span>
-                <span className="text-primary font-bold">Rs. {selectedItem.price}</span>
-              </div>
-            </div>
-          )}
+          {/* Dish Selection */}
+          <div className="mb-6">
+            <Label className="text-caps">Select Your Dish *</Label>
+            <Select 
+              value={selectedItem?.id} 
+              onValueChange={(value) => {
+                const dish = mainDishes.find(d => d.id === value);
+                setSelectedItem(dish);
+              }}
+            >
+              <SelectTrigger className="mt-2">
+                <SelectValue placeholder="Choose a dish" />
+              </SelectTrigger>
+              <SelectContent>
+                {mainDishes.map((dish) => (
+                  <SelectItem key={dish.id} value={dish.id}>
+                    {dish.name} - Rs. {dish.price}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
 
           {/* Quantity */}
           {selectedItem && (
@@ -288,9 +301,9 @@ const OrderForm = ({ preselectedItem }: OrderFormProps) => {
 
           {/* Total */}
           <div className="mb-6 p-4 bg-primary/10 rounded-lg">
-            <div className="flex items-center justify-between text-xl font-bold">
-              <span className="text-caps">Total Amount:</span>
-              <span className="text-primary">Rs. {total}</span>
+            <div className="flex items-center justify-between text-lg font-semibold">
+              <span className="text-caps text-sm">Total Amount:</span>
+              <span className="text-primary text-xl">Rs. {total}</span>
             </div>
           </div>
 
